@@ -1,0 +1,16 @@
+{
+    "name": "rental-mr.bulu",
+    "version": "1.0.0",
+    "description": "",
+    "main": "main.js",
+    "scripts": {
+      "start": "set ELECTRON_DISABLE_SECURITY_WARNINGS=true && electron ."
+    },
+    "author": "Arya Darma Anggara",
+    "license": "ISC",
+    "dependencies": {
+      "electron": "^8.2.3",
+      "uuid": "^7.0.3"
+    }
+  }
+  
