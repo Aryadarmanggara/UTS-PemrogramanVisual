@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Concert+One|Grand+Hotel&display=swap');
 
+* {
+    font-family: 'Concert One', cursive;
+}
+
 nav {
     background: linear-gradient(to right, #cf86fc, #c061fa, #9800f5);
 }
@@ -22,9 +26,7 @@ nav {
     margin-top: 8px;
 }
 
-.sideBar p {
-    font-family: 'Concert One', cursive;
-}
+
 
 .card img {
     width: 250px;

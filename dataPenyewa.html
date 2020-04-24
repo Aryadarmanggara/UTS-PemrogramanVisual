@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Rental Mobil Mr.Bulu</title>
+  </head>
+  <body>
+   
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand m-auto" href="index.html">Rental Mobil Mr.Bulu</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </nav>
+
+      <h1 class="text-center">Data Sewa</h1>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Nama Mobil</th>
+            <th scope="col">Tanggal Sewa</th>
+            <th scope="col">Tanggal Pengembalian</th>
+            <th scope="col">Nama Penyewa</th>
+            <th scope="col">No. Handphone</th>
+            <th scope="col">Alamat</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="text-center">
+            <td id="namaMobil"></td>
+            <td id="date"></td>
+            <td id="tanggalBerakhir"></td>
+            <td id="namaPenyewa"></td>
+            <td id="noHp"></td>
+            <td id="alamat"></td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+
+<script>
+    const electron = require('electron');
+    const {ipcRenderer} = electron;
+    ipcRenderer.send("appointment:request:list");
+
+    ipcRenderer.on("appointment:response:list", (event, appointments) => {
+        const listDiv = document.getElementById("namaMobil")
+        appointments.forEach(appointment => {
+            const appointmentDiv = document.createElement("div");
+
+            const namaMobilParagraph = document.createElement("p");
+            namaMobilParagraph.innerHTML = `${appointment.namaMobil}`;
+
+            appointmentDiv.appendChild(namaMobilParagraph);
+
+            listDiv.append(appointmentDiv);
+    });
+});
+
+ipcRenderer.on("appointment:response:list", (event, appointments) => {
+        const listDiv = document.getElementById("date")
+        appointments.forEach(appointment => {
+            const appointmentDiv = document.createElement("div");
+            
+            const dateParagraph = document.createElement("p");
+            dateParagraph.innerHTML = `${appointment.date}`;
+
+            appointmentDiv.appendChild(dateParagraph);
+
+            listDiv.append(appointmentDiv);
+    });
+});
+
+ipcRenderer.on("appointment:response:list", (event, appointments) => {
+        const listDiv = document.getElementById("tanggalBerakhir")
+        appointments.forEach(appointment => {
+            const appointmentDiv = document.createElement("div");
+
+            const tanggalBerakhirParagraph = document.createElement("p");
+            tanggalBerakhirParagraph.innerHTML = `${appointment.tanggalBerakhir}`;
+
+            appointmentDiv.appendChild(tanggalBerakhirParagraph);
+
+            listDiv.append(appointmentDiv);
+    });
+});
+
+ipcRenderer.on("appointment:response:list", (event, appointments) => {
+        const listDiv = document.getElementById("namaPenyewa")
+        appointments.forEach(appointment => {
+            const appointmentDiv = document.createElement("div");
+
+            const namaPenyewaParagraph = document.createElement("p");
+            namaPenyewaParagraph.innerHTML = `${appointment.namaPenyewa}`;
+            
+            appointmentDiv.appendChild(namaPenyewaParagraph);
+
+            listDiv.append(appointmentDiv);
+    });
+});
+
+ipcRenderer.on("appointment:response:list", (event, appointments) => {
+        const listDiv = document.getElementById("noHp")
+        appointments.forEach(appointment => {
+            const appointmentDiv = document.createElement("div");
+            
+            const noHpParagraph = document.createElement("p");
+            noHpParagraph.innerHTML = `${appointment.noHp}`;
+            
+            appointmentDiv.appendChild(noHpParagraph);
+
+            listDiv.append(appointmentDiv);
+    });
+});
+
+ipcRenderer.on("appointment:response:list", (event, appointments) => {
+        const listDiv = document.getElementById("alamat")
+        appointments.forEach(appointment => {
+            const appointmentDiv = document.createElement("div");
+
+            const alamatParagraph = document.createElement("p");
+            alamatParagraph.innerHTML = `${appointment.alamat}`;
+            
+            appointmentDiv.appendChild(alamatParagraph);
+
+            listDiv.append(appointmentDiv);
+    });
+});
+</script>
+
+  </body>
+</html>

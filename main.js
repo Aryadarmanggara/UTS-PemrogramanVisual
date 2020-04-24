@@ -1,34 +1,34 @@
 const electron = require('electron');
-const uuid = require("uuid/v1");
+const uuid = require("uuid").v4;
+uuid();
 
-const {app, BrowserWindow, Menu, ipcMain} = electron;
+const {
+    app,
+    BrowserWindow,
+    Menu,
+    ipcMain
+} = electron;
 
-let todayWindow;
+let mainWindow;
 let createWindow;
-let listWindow;
 
-let allAppointment = [];
+let allAppointments = [];
 
-app.on("ready", ()=> {
-    todayWindow = new BrowserWindow({
+app.on('ready', () => {
+    mainWindow = new BrowserWindow({
         webPreferences: {
             nodeIntegration: true
         },
-        title: "Rental Mobil Mr.Bulu",
-        width: 1280,
-        height: 700
+        width: 1480,
+        title: 'Rental Mobil Mr.Bulu'
     });
-
-    todayWindow.loadURL(`file://${__dirname}/index.html`);
-    todayWindow.on("close", () => {
-
+    mainWindow.loadURL(`file://${__dirname}/index.html`);
+    mainWindow.on('closed', () => {
         app.quit();
-        todayWindow = null;
+        mainWindow = null;
     });
-
     const mainMenu = Menu.buildFromTemplate(menuTemplate);
     Menu.setApplicationMenu(mainMenu);
-
 });
 
 const listWindowCreator = ()=>{
@@ -36,12 +36,11 @@ const listWindowCreator = ()=>{
         webPreferences: {
             nodeIntegration: true
         },
-        width: 600,
-        height: 400,
-        title: "List Rentals"
+        width: 1280,
+        title: "Daftar Sewa"
     });
     listWindow.setMenu(null);
-    listWindow.loadURL(`file://${__dirname}/rent/list.html`);
+    listWindow.loadURL(`file://${__dirname}/dataPenyewa.html`);
     listWindow.on("closed", ()=> (listWindow = null));
 };
 
@@ -57,14 +56,14 @@ ipcMain.on("appointment:request:list", event => {
 });
 
 ipcMain.on("appointment:done", (event, id) => {
-    console.log("here3");
+    console.log("here");
 });
 
 const menuTemplate = [{
     label: "File",
     submenu: [
         {
-            label: "All Appoitments",
+            label: "Data Sewa",
             click() {
                 listWindowCreator();
             }
@@ -81,6 +80,6 @@ const menuTemplate = [{
 },
 {
     label: "View",
-    submenu: [{ role: "reload" }, { role: "toogledevtools" }]
+    submenu: [{ role: "reload" }]
 }
 ]
