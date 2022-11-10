@@ -9,7 +9,7 @@
     "author": "Arya Darma Anggara",
     "license": "ISC",
     "dependencies": {
-      "electron": "^8.2.3",
+      "electron": "^18.3.7",
       "uuid": "^7.0.3"
     }
   }
